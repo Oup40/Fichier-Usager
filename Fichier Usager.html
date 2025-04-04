@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Usager</title>
+    <link rel="icon" type="image/png" href="XLAmini.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h1 {
+            color: #006B5D;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            background: #006B5D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #004D45;
+        }
+        img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="XLA.png" alt="Vivre à Domicile Logo">
+        <h1>Extraction de Pages PDF</h1>
+        <input type="file" id="fileInput" />
+        <button class="btn" onclick="extractPages([0], 'Fiche Démo.pdf')">Extraire la Fiche Démo</button>
+        <button class="btn" onclick="extractPages([2, 3], 'Préparation de matériel.pdf')">Extraire la préparation de matériel</button>
+        <button class="btn" onclick="extractPages([3], 'Fiche de souscription.pdf')">Extraire la fiche de souscription</button>
+        <button class="btn" onclick="extractPages([4], 'Demande de subrogation.pdf')">Extraire la demande de subrogation</button>
+        <button class="btn" onclick="extractPages([5], 'Mandat SEPA.pdf')">Extraire le mandat SEPA</button>
+        <button class="btn" onclick="extractPages([6], 'Demande PCH.pdf')">Extraire la demande PCH</button>
+        <button class="btn" onclick="extractPages([7], 'PV d’intervention.pdf')">Extraire le PV d'intervention</button>
+        <button class="btn" onclick="extractPages([8], 'Fiche SDIS.pdf')">Extraire la Fiche SDIS</button>
+        <button class="btn" onclick="extractPages([9], 'PV de SAV.pdf')">Extraire le PV de SAV</button>
+        <button class="btn" onclick="extractPages([10], 'PV de désinstallation.pdf')">Extraire le PV de désinstallation</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script>
+        async function extractPages(pageIndices, fileName) {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Veuillez sélectionner un fichier PDF.");
+                return;
+            }
+
+            const arrayBuffer = await file.arrayBuffer();
+            const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+            const extractedPdf = await PDFLib.PDFDocument.create();
+
+            const pages = await extractedPdf.copyPages(pdfDoc, pageIndices);
+            pages.forEach(page => extractedPdf.addPage(page));
+
+            const pdfBytes = await extractedPdf.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+
+            setTimeout(() => {
+                alert("Pense à rajouter le nom de l'usager dans le fichier que tu viens de télécharger !");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
