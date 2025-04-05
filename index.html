@@ -18,19 +18,14 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            width: 25%; 
-            margin: 0 auto;
-            text-align: center;
         }
         h1 {
             color: #006B5D;
         }
-        * {
-            box-sizing: border-box;
-        }
-        a.btn, .btn {
+        .btn {
             display: block;
             width: 60%; 
+            margin: 10px auto;
             padding: 10px;
             background: #006B5D;
             color: white;
@@ -40,10 +35,17 @@
             font-size: 16px;
             text-align: center;
             text-decoration: none;
-            margin: 10px auto;
         }
-        a.btn:hover, .btn:hover {
+        .btn:hover {
             background: #004D45;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            width: 25%; 
+            margin: 0 auto;
+            text-align: center;
         }
         img {
             max-width: 100px;
@@ -56,44 +58,27 @@
         <img src="XLA.png" alt="Vivre à Domicile Logo">
         <h1>Extraction de Pages PDF</h1>
         <input type="file" id="fileInput" />
-        <!-- Les boutons seront générés dynamiquement par JavaScript -->
+        <button class="btn" onclick="extractPages([1, 2], 'Fiche Démo.pdf')">Fiche Démo</button>
+        <button class="btn" onclick="extractPages([3, 4], 'Préparation de matériel.pdf')">Préparation de matériel</button>
+        <button class="btn" onclick="extractPages([5, 6, 7, 8, 9], 'Fiche de souscription.pdf')">Fiche de souscription</button>
+        <button class="btn" onclick="extractPages([10], 'Demande de subrogation.pdf')">Demande de subrogation</button>
+        <button class="btn" onclick="extractPages([11], 'Mandat SEPA.pdf')">Mandat SEPA</button>
+        <button class="btn" onclick="extractPages([12], 'Demande PCH.pdf')">Demande PCH</button>
+        <button class="btn" onclick="extractPages([13], 'Fiche SDIS.pdf')">Fiche SDIS</button>        
+        <button class="btn" onclick="extractPages([14], 'PV d’intervention.pdf')">PV d'intervention</button>
+        <button class="btn" onclick="extractPages([15], 'PV SAV.pdf')">PV de SAV</button>
+        <button class="btn" onclick="extractPages([16], 'PV de désinstallation.pdf')">PV de désinstallation</button>
+        <button class="btn" onclick="extractPages([17, 18, 19, 20], 'Avenant')">Avenant</button>
+        <button class="btn" onclick="window.open('https://github.com/Oup40/Fichier-Usager/raw/main/Manu_piscine.jpg', '_blank')">Manu le plus beau</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script>
-        const buttons = [
-            { text: 'Fiche Démo', pages: [1, 2], file: 'Fiche Démo.pdf' },
-            { text: 'Préparation de matériel', pages: [3, 4], file: 'Préparation de matériel.pdf' },
-            { text: 'Fiche de souscription', pages: [5, 6, 7, 8, 9], file: 'Fiche de souscription.pdf' },
-            { text: 'Demande de subrogation', pages: [10], file: 'Demande de subrogation.pdf' },
-            { text: 'Mandat SEPA', pages: [11], file: 'Mandat SEPA.pdf' },
-            { text: 'Demande PCH', pages: [12], file: 'Demande PCH.pdf' },
-            { text: 'Fiche SDIS', pages: [13], file: 'Fiche SDIS.pdf' },
-            { text: 'PV d\'intervention', pages: [14], file: 'PV d\'intervention.pdf' },
-            { text: 'PV SAV', pages: [15], file: 'PV SAV.pdf' },
-            { text: 'PV de désinstallation', pages: [16], file: 'PV de désinstallation.pdf' },
-            { text: 'Avenant', pages: [17, 18, 19, 20], file: 'Avenant.pdf' }
-        ];
-
-        buttons.forEach(button => {
-            const btn = document.createElement('button');
-            btn.classList.add('btn');
-            btn.textContent = button.text;
-            btn.onclick = () => extractPages(button.pages, button.file);
-            document.querySelector('.container').appendChild(btn);
-        });
-
         async function extractPages(pageIndices, fileName) {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
 
             if (!file) {
                 alert("Veuillez sélectionner un fichier PDF.");
-                return;
-            }
-
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            if (fileExtension !== 'pdf') {
-                alert("Le fichier sélectionné n'est pas un PDF.");
                 return;
             }
 
