@@ -48,16 +48,17 @@
         <img src="XLA.png" alt="Vivre à Domicile Logo">
         <h1>Extraction de Pages PDF</h1>
         <input type="file" id="fileInput" />
-        <button class="btn" onclick="extractPages([1, 2], 'Fiche Démo.pdf')">Extraire la Fiche Démo</button>
-        <button class="btn" onclick="extractPages([3, 4], 'Préparation de matériel.pdf')">Extraire la préparation de matériel</button>
-        <button class="btn" onclick="extractPages([5, 9], 'Fiche de souscription.pdf')">Extraire la fiche de souscription</button>
-        <button class="btn" onclick="extractPages([10], 'Demande de subrogation.pdf')">Extraire la demande de subrogation</button>
-        <button class="btn" onclick="extractPages([11], 'Mandat SEPA.pdf')">Extraire le mandat SEPA</button>
-        <button class="btn" onclick="extractPages([12], 'Demande PCH.pdf')">Extraire la demande PCH</button>
-        <button class="btn" onclick="extractPages([7], 'PV d’intervention.pdf')">Extraire le PV d'intervention</button>
-        <button class="btn" onclick="extractPages([8], 'Fiche SDIS.pdf')">Extraire la Fiche SDIS</button>
-        <button class="btn" onclick="extractPages([9], 'PV de SAV.pdf')">Extraire le PV de SAV</button>
-        <button class="btn" onclick="extractPages([10], 'PV de désinstallation.pdf')">Extraire le PV de désinstallation</button>
+        <button class="btn" onclick="extractPages([1, 2], 'Fiche Démo.pdf')">Fiche Démo</button>
+        <button class="btn" onclick="extractPages([3, 4], 'Préparation de matériel.pdf')">Préparation de matériel</button>
+        <button class="btn" onclick="extractPages([5, 6, 7, 8, 9], 'Fiche de souscription.pdf')">Fiche de souscription</button>
+        <button class="btn" onclick="extractPages([10], 'Demande de subrogation.pdf')">Demande de subrogation</button>
+        <button class="btn" onclick="extractPages([11], 'Mandat SEPA.pdf')">Mandat SEPA</button>
+        <button class="btn" onclick="extractPages([12], 'Demande PCH.pdf')">Demande PCH</button>
+        <button class="btn" onclick="extractPages([13], 'Fiche SDIS.pdf')">Fiche SDIS</button>        
+        <button class="btn" onclick="extractPages([14], 'PV d’intervention.pdf')">PV d'intervention</button>
+        <button class="btn" onclick="extractPages([15], 'PV SAV.pdf')">PV de SAV</button>
+        <button class="btn" onclick="extractPages([16], 'PV de désinstallation.pdf')">PV de désinstallation</button>
+        <button class="btn" onclick="extractPages([17, 18, 19, 20], 'Avenant')">Avenant</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script>
