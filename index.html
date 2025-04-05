@@ -39,23 +39,31 @@
         .btn:hover {
             background: #004D45;
         }
-        a.btn {
-            display: block;
-            padding: 10px;
-            background: #006B5D;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            width: 80%; /* S'assurer que la largeur est définie */
-            margin: 10px auto;
-        }
-        .container {
-            text-align: center; /* Pour centrer le lien */
-        }
+       * {
+    box-sizing: border-box; /* Assure que padding et bordures sont inclus dans la largeur */
+}
+
+a.btn, .btn {
+    display: block;
+    width: 100%; /* Force la largeur à occuper toute la largeur de son conteneur */
+    padding: 10px;
+    background: #006B5D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 0; /* Supprime les marges gauche/droite */
+}
+
+.container {
+    width: 80%; /* S'assurer que le conteneur prend bien 80% de la largeur */
+    margin: 0 auto; /* Centrer le conteneur */
+    text-align: center;
+}
+
         a.btn:hover {
     background: #004D45;
         }
